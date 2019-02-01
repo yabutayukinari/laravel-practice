@@ -10,7 +10,6 @@ jobs:
       - run: composer install -n --ignore-platform-reqs
       - run: npm install
       - run: npm run production
-      - run: vendor/bin/phpunit
 
       - run:
           name: Start Chrome Driver
