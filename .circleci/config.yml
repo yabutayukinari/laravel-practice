@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    docker:
+      - image: circleci/php:7.1-jessie-node-browsers
     steps:
       - run: sudo apt-get install -y libsqlite3-dev
       - run: cp .env.testing .env
