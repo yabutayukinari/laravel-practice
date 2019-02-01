@@ -5,7 +5,7 @@ jobs:
       - image: circleci/php:7.1-jessie-node-browsers
     steps:
       - run: sudo apt-get install -y libsqlite3-dev
-      - run: cp .env.testing .env
+      - run: cp .env.example .env
       - run: composer install -n --ignore-platform-reqs
       - run: npm install
       - run: npm run production
