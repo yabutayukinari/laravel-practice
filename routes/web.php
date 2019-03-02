@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,14 +13,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin::'], function () {
-
-    // ダッシュボード
-    Route::group(['prefix' => 'dashboard', 'as' => 'dashboard::'], function () {
-        Route::get('', ['uses' => 'DashboardController@getIndex'])->name('index');
-    });
-
-    Route::resource('user', 'UserController');
 });
