@@ -23,7 +23,7 @@ jobs:
 
       - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
-      - run: cp .env.example .env
+      - run: cp .env.testing .env
 
       # Download and cache dependencies
 
