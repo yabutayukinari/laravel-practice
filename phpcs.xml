@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<ruleset name="Laravel Standards">
+    <description>The Laravel Coding Standards</description>
+
+    <!-- 対象ディレクトリ -->
+    <file>./app</file>
+    <file>./config</file>
+    <file>./resources</file>
+    <file>./routes</file>
+    <file>./tests</file>
+
+    <!-- 除外したいファイル、ディレクトリ -->
+    <exclude-pattern>*/database/*</exclude-pattern>
+    <exclude-pattern>*/cache/*</exclude-pattern>
+    <exclude-pattern>*/*.js</exclude-pattern>
+    <exclude-pattern>*/*.css</exclude-pattern>
+    <exclude-pattern>*/*.xml</exclude-pattern>
+    <exclude-pattern>*/*.blade.php</exclude-pattern>
+    <exclude-pattern>*/autoload.php</exclude-pattern>
+    <exclude-pattern>*/storage/*</exclude-pattern>
+    <exclude-pattern>*/docs/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/migrations/*</exclude-pattern>
+
+    <!-- PSR-2に準拠しているかチェックする -->
+    <rule ref="PSR2">
+        <!-- 一行が長くても良い -->
+        <!--<exclude name="Generic.Files.LineLength.TooLong"/>-->
+        <!-- 改行コードにCRLFを許可する -->
+        <exclude name="Generic.Files.LineEndings.InvalidEOLChar"/>
+    </rule>
+
+    <!-- 変数名はキャメルケースにすること -->
+    <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+
+    <!-- 文字列の結合演算子の前後にスペースを入れないこと -->
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <!--
+            // 改行を入れるのは許可する
+            $variable = 'test'.
+                        'test2';
+            -->
+            <property name="ignoreNewlines" value="true"/>
+        </properties>
+    </rule>
+
+    <!-- コメントの記法をチェックする -->
+    <rule ref="Squiz.Commenting">
+        <!-- phpdocにSquizのcopyrightとauthorの記載は無くても良い -->
+        <exclude name="Squiz.Commenting.FileComment.IncorrectCopyright" />
+        <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor" />
+        <!-- "@package"の記載位置は何処でも良い -->
+        <exclude name="Squiz.Commenting.FileComment.PackageTagOrder" />
+        <!--<exclude name="Squiz.Commenting.FileComment.MissingPackageTag" />-->
+        <!-- "@subpackage"の記載有無と記載位置は自由で良い -->
+        <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder" />
+        <exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag" />
+        <!-- "@author"の記載有無と記載位置は自由で良い -->
+        <exclude name="Squiz.Commenting.FileComment.AuthorTagOrder" />
+        <exclude name="Squiz.Commenting.FileComment.MissingAuthorTag" />
+        <!-- "@copyright"の記載位置は何処でも良い -->
+        <exclude name="Squiz.Commenting.FileComment.CopyrightTagOrder" />
+        <!-- "@param"のコメント有無は自由で良い（Laravelのコアでもコメントは省略しているケースが多いため） -->
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
+        <!-- "@param"の行末にピリオド/感嘆符/疑問符が無くても良い -->
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop" />
+        <!-- "@param"の型/コメントの開始列は、他パラメータと揃えなくても良い -->
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamName" />
+        <exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType" />
+        <!-- "@param"のコメント開始は、英大文字以外でも良い -->
+        <exclude name="Squiz.Commenting.FunctionComment.ParamCommentNotCapital" />
+        <!-- "@throws"のコメントを強制しない（Laravelのコアでもコメントは省略しているケースが多いため） -->
+        <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows" />
+        <!-- コメントの行末にピリオド/感嘆符/疑問符が無くても良い -->
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+        <!-- コメント先頭は、英大文字以外でも良い -->
+        <exclude name="Squiz.Commenting.InlineComment.NotCapital" />
+        <!-- コメント先頭の直前にスペースが無くても良い（不要ソースをコメントアウトするケースがあるので） -->
+        <exclude name="Squiz.Commenting.InlineComment.NoSpaceBefore" />
+        <!-- メソッドの最終行に"// end"が無くても良い -->
+        <exclude name="Squiz.Commenting.ClosingDeclarationComment.Missing" />
+        <!-- ifやswitchの長いブロックの最終行に"// end"が無くても良い -->
+        <exclude name="Squiz.Commenting.LongConditionClosingComment.Missing" />
+        <!-- コメントの直下に空行が有っても良い -->
+        <exclude name="Squiz.Commenting.InlineComment.SpacingAfter" />
+        <!-- 型はint/boolと記載しても良い（integer/booleanの記載を強制しない） -->
+        <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn" />
+    </rule>
+
+    <ini name="memory_limit" value="128M"/>
+</ruleset>
