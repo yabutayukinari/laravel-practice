@@ -1,9 +1,17 @@
 <?php
+/**
+ * @copyright Copyright yabuta
+ * @since     2019/3/11
+ * @package App\Providers
+ */
 
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class AppServiceProvider
+ */
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // 開発時のみ
+        if ($this->app->environment() !== 'production') {
+            // ide_helper
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 
     /**
@@ -23,6 +35,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }
