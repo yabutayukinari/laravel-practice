@@ -5,7 +5,12 @@
  * @package Routes
  */
 
-Route::group(['as' => 'front::'], function () {
+Route::group(['as' => 'front::', 'namespace' => 'front'], function () {
     // トップページ
     Route::get('', 'TopController@getIndex')->name('top');
+});
+
+Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
+    // トップページ
+    Route::get('', 'DashboardController@getIndex')->name('top');
 });

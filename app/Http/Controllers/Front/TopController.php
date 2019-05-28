@@ -7,7 +7,6 @@
 
 namespace App\Http\Controllers\Front;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
@@ -16,4 +15,8 @@ use App\Http\Controllers\Controller;
  */
 class TopController extends Controller
 {
+    public function getIndex()
+    {
+        return view('front.top.index');
+    }
 }
