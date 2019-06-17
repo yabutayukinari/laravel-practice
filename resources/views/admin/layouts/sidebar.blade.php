@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="azure" data-background-color="white" data-image="/admin_asset/img/sidebar-1.jpg">
+<div class="sidebar" data-color="purple" data-background-color="white" data-image="/admin_asset/img/sidebar-1.jpg">
     <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -6,21 +6,21 @@
   -->
     <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            Creative Tim
+            Management Screen
         </a>
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="nav-item active  ">
+            <li class="nav-item">
                 <a class="nav-link" href="./dashboard.html">
                     <i class="material-icons">dashboard</i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="./user.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{route('admin::admins.list')}}">
                     <i class="material-icons">person</i>
-                    <p>User Profile</p>
+                    <p>管理者一覧</p>
                 </a>
             </li>
 
@@ -28,7 +28,7 @@
             <li class="nav-item active-pro ">
                 <a class="nav-link" href="./upgrade.html">
                     <i class="material-icons">unarchive</i>
-                    <p>Upgrade to PRO</p>
+                    <p>Logout</p>
                 </a>
             </li>
         </ul>

@@ -12,5 +12,9 @@ Route::group(['as' => 'front::', 'namespace' => 'front'], function () {
 
 Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
     // トップページ
-    Route::get('', 'DashboardController@getIndex')->name('top');
+    Route::get('', 'DashboardController@getIndex')->name('dashboard');
+
+    Route::group(['as' => 'admins.', 'namespace' => 'Admins', 'prefix' => 'admins'], function () {
+        Route::get('list', 'ListController@getIndex')->name('list');
+    });
 });
