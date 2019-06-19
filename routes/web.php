@@ -5,7 +5,7 @@
  * @package Routes
  */
 
-Route::group(['as' => 'front::', 'namespace' => 'Front'], function () {
+Route::group(['as' => 'front::', 'namespace' => 'Front', 'prefix' => 'front'], function () {
     // トップページ
     Route::get('', 'TopController@getIndex')->name('top');
 });
