@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 /**
  * 管理者登録
  */
-class RegisterController extends Controller
+class CreateController extends Controller
 {
     /**
      * 一覧画面取得
@@ -22,6 +22,6 @@ class RegisterController extends Controller
     public function getIndex()
     {
 
-        return view('admin.admins.Edit');
+        return view('admin.admins.create');
     }
 }

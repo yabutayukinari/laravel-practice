@@ -16,5 +16,7 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
 
     Route::group(['as' => 'admins.', 'namespace' => 'Admins', 'prefix' => 'admins'], function () {
         Route::get('list', 'ListController@getIndex')->name('list');
+        Route::get('create', 'CreateController@getIndex')->name('create');
+        Route::get('edit', 'EditController@getIndex')->name('create');
     });
 });

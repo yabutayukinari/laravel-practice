@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Hello, world!</title>
+    <title>@yield('title')</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
@@ -15,6 +15,13 @@
     <!-- Material Dashboard CSS -->
     <link rel="stylesheet" href="/admin_asset/css/material-dashboard.css">
     <link rel="stylesheet" href="/admin_asset/css/material-dashboard-rtl.css">
+    <style type="text/css">
+        <!--
+        .valid-feedback
+
+        {display: block}
+        -->
+    </style>
 </head>
 <body>
 @yield('header')

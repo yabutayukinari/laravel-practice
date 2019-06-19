@@ -22,6 +22,6 @@ class EditController extends Controller
     public function getIndex()
     {
 
-        return view('admin.admins.Edit');
+        return view('admin.admins.edit');
     }
 }
