@@ -1,36 +1,42 @@
-<div class="sidebar" data-color="purple" data-background-color="white" data-image="/admin_asset/img/sidebar-1.jpg">
-    <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
-    <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            Management Screen
-        </a>
+<nav id="sidebar">
+    <div class="sidebar-header">
+        {{-- メインタイトル --}}
+        <h3>@yield('productTitle')</h3>
+        {{-- 画面タイトル --}}
+        <p>@yield('title')</p>
     </div>
-    <div class="sidebar-wrapper">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('admin::dashboard')}}">
-                    <i class="material-icons">dashboard</i>
-                    <p>Dashboard</p>
-                </a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{route('admin::admins.list')}}">
-                    <i class="material-icons">person</i>
-                    <p>管理者一覧</p>
-                </a>
-            </li>
+    <ul class="list-unstyled components">
+        <li class="active">
+            @if(url()->current() === route('admin::dashboard'))
+                <span><p class="oi oi-dashboard"></p>ダッシュボード</span>
+            @else
+                <a href="{{route('admin::dashboard')}}">
+                    <span class="oi oi-dashboard"></span>ダッシュボード</a>
 
-            {{-- 一番下に表示 --}}
-            <li class="nav-item active-pro ">
-                <a class="nav-link" href="./upgrade.html">
-                    <i class="material-icons">unarchive</i>
-                    <p>Logout</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+            @endif
+        </li>
+        <li>
+            <a href="#"><i class="material-icons">person</i>会員管理</a>
+        </li>
+        <li>
+            <a href="#">問い合わせ管理</a>
+        </li>
+        <li>
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">設定</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="{{route('admin::admins.list')}}">管理者管理</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul class="list-unstyled CTAs">
+        <li>
+            <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+        </li>
+        <li>
+            <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
+        </li>
+    </ul>
+</nav>
