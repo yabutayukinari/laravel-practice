@@ -1,4 +1,4 @@
-@extends('admin.layouts.layouts')
+@extends('admin.layouts.layouts',['pageContents' => 'admins', 'pageType' => 'create'])
 @section('title', '管理者登録')
 @section('content')
     <div class="container-fluid">

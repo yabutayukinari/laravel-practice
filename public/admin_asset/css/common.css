@@ -58,12 +58,13 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-  padding: 20px;
+  padding: 20px 10px 0;
   background: var(--color-theme-primary);
 }
 
 #sidebar ul.components {
-  padding: 20px 0;
+  padding: 0 0 20px ;
+  border-top: 1px solid var(--color-theme-primary-right);
   border-bottom: 1px solid var(--color-theme-primary-right);
 }
 
@@ -77,12 +78,13 @@ a:focus {
   font-size: 1.1em;
   display: block;
 }
-#sidebar ul li span {
+
+#sidebar Ul li span{
   padding: 10px;
   font-size: 1.1em;
   display: block;
-  background-color: var(--color-theme-primary-dark);
 }
+
 
 #sidebar ul li a:hover {
   color: var(--color-theme-primary);
@@ -95,6 +97,10 @@ a[aria-expanded="true"] {
   background: var(--color-theme-primary-dark);
 }
 
+#sidebar ul li.active{
+  color: var(--color-theme-primary-text);
+  background: var(--color-theme-primary-dark);
+}
 
 
 a[data-toggle="collapse"] {
@@ -110,6 +116,13 @@ a[data-toggle="collapse"] {
 }
 
 ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: var(--color-theme-primary);
+}
+
+
+ul ul span {
   font-size: 0.9em !important;
   padding-left: 30px !important;
   background: var(--color-theme-primary-dark);

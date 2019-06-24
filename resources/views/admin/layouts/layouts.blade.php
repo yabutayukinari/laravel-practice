@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    @section('productTitle', 'YMSa')
+    @section('productTitle', 'YMS')
     <title>@yield('title')｜@yield('productTitle')</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
 <body>
 <div class="wrapper">
     <!-- Sidebar  -->
-@include('admin.layouts.sidebar')
+@include('admin.layouts.sidebar', ['pageContents' => $pageContents, 'pageType' => $pageType])
     <!-- navbar -->
     <!-- Page Content  -->
     <div class="container-fluid">

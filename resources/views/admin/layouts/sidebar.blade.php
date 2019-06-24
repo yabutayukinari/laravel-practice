@@ -6,26 +6,32 @@
         <p>@yield('title')</p>
     </div>
     <ul class="list-unstyled components">
-        <li class="active">
-            @if(url()->current() === route('admin::dashboard'))
-                <span><p class="oi oi-dashboard"></p>ダッシュボード</span>
+        <li @if($pageContents === 'dashboard')class="active" @endif>
+            @if($pageContents === 'dashboard')
+                <span>ダッシュボード</span>
             @else
-                <a href="{{route('admin::dashboard')}}">
-                    <span class="oi oi-dashboard"></span>ダッシュボード</a>
+                <a href="{{route('admin::dashboard')}}">ダッシュボード</a>
 
             @endif
         </li>
-        <li>
-            <a href="#"><i class="material-icons">person</i>会員管理</a>
+        <li @if(url()->current() === route('admin::users.list'))class="active" @endif>
+            @if(url()->current() === route('admin::users.list'))
+                <span>会員管理</span>
+            @else
+                <a href="{{route('admin::admins.list')}}">会員管理</a>
+            @endif
         </li>
         <li>
             <a href="#">問い合わせ管理</a>
         </li>
-        <li>
-            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">設定</a>
-            <ul class="collapse list-unstyled" id="homeSubmenu">
-                <li>
-                    <a href="{{route('admin::admins.list')}}">管理者管理</a>
+        <li @if($pageContents === 'admins') class="active" @endif>
+            <a href="#adminsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">管理者管理</a>
+            <ul class="collapse list-unstyled @if($pageContents === 'admins') show @endif" id="adminsSubmenu">
+                <li @if($pageContents === 'admins' && $pageType === 'list') class="active" @endif>
+                    <a href="{{route('admin::admins.list')}}">管理者一覧</a>
+                </li>
+                <li @if($pageContents === 'admins' && $pageType === 'create') class="active" @endif>
+                    <a href="{{route('admin::admins.create')}}">管理者登録</a>
                 </li>
             </ul>
         </li>
