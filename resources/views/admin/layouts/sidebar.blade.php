@@ -25,7 +25,7 @@
             <a href="#">問い合わせ管理</a>
         </li>
         <li @if($pageContents === 'admins') class="active" @endif>
-            <a href="#adminsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">管理者管理</a>
+            <a href="#adminsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">管理者管理 <i class="fas fa-angle-down"></i></a>
             <ul class="collapse list-unstyled @if($pageContents === 'admins') show @endif" id="adminsSubmenu">
                 <li @if($pageContents === 'admins' && $pageType === 'list') class="active" @endif>
                     <a href="{{route('admin::admins.list')}}">管理者一覧</a>
@@ -34,15 +34,6 @@
                     <a href="{{route('admin::admins.create')}}">管理者登録</a>
                 </li>
             </ul>
-        </li>
-    </ul>
-
-    <ul class="list-unstyled CTAs">
-        <li>
-            <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-        </li>
-        <li>
-            <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a>
         </li>
     </ul>
 </nav>

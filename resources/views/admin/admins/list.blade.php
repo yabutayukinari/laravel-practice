@@ -1,16 +1,22 @@
 @extends('admin.layouts.layouts',['pageContents' => 'admins', 'pageType' => 'list'])
 @section('title', '管理者一覧')
 @section('content')
-    <div class="container-fluid">
-        <a class="btn btn-success" href="{{route("admin::admins.create")}}"><i class="material-icons">add</i>新規登録</a>
-        <div class="row">
-
+    <div id="content">
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <a class="btn btn-success" href="{{route("admin::admins.create")}}"><span class="oi oi-plus"></span> 新規登録</a>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 ">
+
+        <div class="row mb-3">
+            <div class="col-md-4">
                 <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            管理者一覧検索
+                        </h5>
+                    </div>
                     <div class="card-body">
-                        絞り込み検索
                         <form>
                             <div class="row">
                                 <div class="col-md-12">
@@ -28,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name-kana">氏名(ふりがな)</label>
+                                        <label for="name-kana">氏名 <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" title="氏名または氏名（ふりがな）の部分一致で検索できます。"></i></label>
 
                                         <input type="text" class="form-control" data-style="btn btn-link"
                                                id="name-kana">
@@ -36,13 +42,14 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 text-right">
                                     <button type="button" class="btn btn-primary">検索</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="row">
@@ -51,15 +58,13 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-hover">
-                                <thead class="text-primary">
+                                <thead class="">
                                 <tr>
                                     <th class="text-center">ID</th>
                                     <th>氏名</th>
                                     <th>氏名（ふりがな）</th>
                                     <th>権限</th>
-                                    <th>登録日</th>
-                                    <th>更新日</th>
-                                    <th class="">アクション</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -74,12 +79,6 @@
                                         <td>やまだ {{$i}}ろう</td>
                                         <td>
                                             管理者
-                                        </td>
-                                        <td>
-                                            2019-06-17 10:00:01
-                                        </td>
-                                        <td>
-                                            2019-06-17 11:24:31
                                         </td>
                                         <td class="">
                                             <a class="btn btn-success" href="{{route("admin::admins.create")}}">編集</a>

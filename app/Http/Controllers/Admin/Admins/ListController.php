@@ -14,6 +14,9 @@ use App\Http\Controllers\Controller;
  */
 class ListController extends Controller
 {
+    //テンプレート
+    const VIEW_FILE = 'admin.admins.list';
+
     /**
      * 一覧画面取得
      *
@@ -22,6 +25,6 @@ class ListController extends Controller
     public function getIndex()
     {
 
-        return view('admin.admins.list');
+        return view(self::VIEW_FILE);
     }
 }
