@@ -63,7 +63,6 @@ a:focus {
 }
 
 #sidebar ul.components {
-  padding: 0 0 20px ;
   border-top: 1px solid var(--color-theme-primary-right);
   border-bottom: 1px solid var(--color-theme-primary-right);
 }
@@ -182,9 +181,9 @@ ul.CTAs a {
 ----------------------------------------------------- */
 
 .table th {
-    background: var(--color-theme-primary);
+    background: var(--color-theme-primary-right);
     color: var(--color-theme-primary-text);
-    border-color: #454d55;
+    border-color: var(--color-theme-primary);
 }
 
 /* ---------------------------------------------------
@@ -192,4 +191,9 @@ ul.CTAs a {
 ----------------------------------------------------- */
 .tooltip-inner {
   max-width: 100%;
+}
+
+.card-header{
+  background-color: var(--color-theme-primary);
+  color: var(--color-theme-primary-text);
 }

@@ -30,8 +30,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group bmd-form-group has-danger">
-                                        <label class="bmd-label-floating">ユーザーID</label>
-                                        <input type="text" class="form-control">
+                                        <label class="bmd-label-floating ">ユーザーID</label>
+                                        <input type="text" class="form-control is-invalid">
                                         <label class="control-label" style="color: red">ユーザーIDを入力してください。</label>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                 <div class="col-md-10">
 
                                     <div class="form-group bmd-form-group">
-                                        <label class="bmd-label-floating">パスワード <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" data-html="true" data-container="body" title="パスワードは以下の条件で入力してください。<br/>・半角英数字<br>・8~25文字"></i></label>
+                                        <label class="bmd-label-floating">パスワード <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" data-html="true" data-container="body" title="パスワードは以下の条件で入力してください。<br/>半角英数字<br>8~25文字"></i></label>
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" :type="passwordFieldType" v-model="password" aria-label="Recipient's username" aria-describedby="basic-addon2">
                                             <div class="input-group-append">

@@ -3,18 +3,13 @@
 @section('content')
     <div id="content">
         <div class="row mb-3">
-            <div class="col-sm-12">
-                <a class="btn btn-success" href="{{route("admin::admins.create")}}"><span class="oi oi-plus"></span> 新規登録</a>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="mb-0">
+                        <h4 class="mb-0">
                             管理者一覧検索
-                        </h5>
+                        </h4>
+                        <p class="card-text">管理者の検索を行えます</p>
                     </div>
                     <div class="card-body">
                         <form>
@@ -107,7 +102,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        このアカウントを削除しますか？
+                        この管理者を削除しますか？
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
