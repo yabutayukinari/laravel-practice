@@ -8,6 +8,9 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 /**
  * 認証処理
@@ -17,11 +20,17 @@ class AuthController extends Controller
     /**
      * 認証処理
      *
-     * @return mixed
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
+        // 認証
+        if (!Auth::guard('admins')->attempt($request->only('admin_code', 'password'))) {
+            Session::flash('login_error_message', 'ログインに失敗しました。');
+            return redirect()->route('admin::auth.login');
+        }
 
-        return redirect(route('Admin::dashboard'));
+        return redirect()->intended(route('admin::dashboard'));
     }
 }

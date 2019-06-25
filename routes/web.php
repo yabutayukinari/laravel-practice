@@ -14,22 +14,30 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
 
     Route::group(['as' => 'auth.', 'namespace' => 'Auth', 'prefix' => 'auth'], function () {
         Route::get('login','LoginController')->name('login');
-        Route::post('auth', 'AuthController')->name('auth');
+        Route::post('', 'AuthController')->name('auth');
     });
+    Route::group(['middleware' => 'auth'], function () {
+        // トップページ
+        Route::get('', 'DashboardController')->name('dashboard');
+        Route::group(['as' => 'auth.', 'namespace' => 'Auth', 'prefix' => 'auth'], function () {
+        Route::get('logout','LogoutController')->name('logout');
+            });
 
-    // トップページ
-    Route::get('', 'DashboardController')->name('dashboard');
+        // 管理者管理
+        Route::group(['as' => 'admins.', 'namespace' => 'Admins', 'prefix' => 'admins'], function () {
+            Route::get('list', 'ListController')->name('list');
+            Route::get('create', 'CreateController')->name('create');
+            Route::get('edit', 'EditController')->name('edit');
+        });
 
-    // 管理者管理
-    Route::group(['as' => 'admins.', 'namespace' => 'Admins', 'prefix' => 'admins'], function () {
-        Route::get('list', 'ListController')->name('list');
-        Route::get('create', 'CreateController')->name('create');
-        Route::get('edit', 'EditController')->name('edit');
-    });
+        // 会員管理
+        Route::group(['as' => 'users.', 'namespace' => 'Users', 'prefix' => 'users'], function () {
+            Route::get('list', 'ListController')->name('list');
+            Route::get('edit', 'EditController')->name('edit');
+        });
 
-    // 会員管理
-    Route::group(['as' => 'users.', 'namespace' => 'Users', 'prefix' => 'users'], function () {
-        Route::get('list', 'ListController')->name('list');
-        Route::get('edit', 'EditController')->name('edit');
+
     });
 });
+
+Route::get('/home', 'HomeController@index')->name('home');

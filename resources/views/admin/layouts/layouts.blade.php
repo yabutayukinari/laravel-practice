@@ -24,11 +24,15 @@
 <body>
 <div class="wrapper">
     <!-- Sidebar  -->
-@include('admin.layouts.sidebar', ['pageContents' => $pageContents, 'pageType' => $pageType])
+@if(Auth::check())
+    @include('admin.layouts.sidebar', ['pageContents' => $pageContents, 'pageType' => $pageType])
+@endif
 <!-- navbar -->
     <!-- Page Content  -->
     <div class="container-fluid">
-        @include('admin.layouts.header')
+        @if(Auth::check())
+            @include('admin.layouts.header')
+        @endif
         @yield('content')
     </div>
 </div>

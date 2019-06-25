@@ -35,5 +35,8 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="{{route('admin::auth.logout')}}">ログアウト</a>
+        </li>
     </ul>
 </nav>

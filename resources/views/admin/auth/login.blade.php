@@ -7,12 +7,20 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">ログイン</h5>
-                        <form class="form-signin" method="post">
+                        <form class="form-signin" method="post" action="{{route('admin::auth.auth')}}">
+                            @csrf
+                            @if($error_message)
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <p style="color: red">{{$error_message}}</p>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-label-group">
                                         <label for="inputEmail">管理者コード</label>
-                                        <input type="email" id="user_id" class="form-control" placeholder="管理者コード"
+                                        <input type="text" id="admin_code" name="admin_code" class="form-control" placeholder="管理者コード"
                                                autofocus>
                                     </div>
                                 </div>
@@ -21,7 +29,7 @@
                                 <div class="col-md-12">
                                     <div class="form-label-group">
                                         <label for="inputPassword">パスワード</label>
-                                        <input type="password" id="inputPassword" class="form-control"
+                                        <input type="password" id="inputPassword" name="password" class="form-control"
                                                placeholder="パスワード">
                                     </div>
                                 </div>

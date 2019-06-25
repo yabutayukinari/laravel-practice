@@ -8,11 +8,12 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 /**
- * ログイン
+ * ログアウト
  */
-class LoginController extends Controller
+class LogoutController extends Controller
 {
     /**
      * ダッシュボード
@@ -21,6 +22,8 @@ class LoginController extends Controller
      */
     public function __invoke()
     {
-        return view('admin.auth.login', ['error_message' => session('login_error_message')]);
+        Auth::logout();
+
+        return redirect()->route('admin::auth.login');
     }
 }
