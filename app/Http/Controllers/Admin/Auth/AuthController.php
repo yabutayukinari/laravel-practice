@@ -27,7 +27,7 @@ class AuthController extends Controller
     {
         // 認証
         if (!Auth::guard('admins')->attempt($request->only('admin_code', 'password'))) {
-            Session::flash('login_error_message', 'ログインに失敗しました。');
+            Session::flash('is_auth_error', true);
             return redirect()->route('admin::auth.login');
         }
 

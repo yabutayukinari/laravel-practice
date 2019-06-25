@@ -3,16 +3,16 @@
 @section('content')
     <div id="content">
         <div class="row">
-            <div class="col-sm-9 col-md-5 col-lg-3 mx-auto">
+            <div class="col-sm-9 col-md-6 col-lg-4 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">ログイン</h5>
                         <form class="form-signin" method="post" action="{{route('admin::auth.auth')}}">
                             @csrf
-                            @if($error_message)
+                            @if($isAuthError)
                                 <div class="row">
                                     <div class="col-md-12 text-center">
-                                        <p style="color: red">{{$error_message}}</p>
+                                        <p style="color: red">@lang('auth.failed')</p>
                                     </div>
                                 </div>
                             @endif
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-3">
+                            <div class="row mt-5">
                                 <div class="col-md-12">
                                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">ログイン
                                     </button>

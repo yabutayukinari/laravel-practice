@@ -21,6 +21,6 @@ class LoginController extends Controller
      */
     public function __invoke()
     {
-        return view('admin.auth.login', ['error_message' => session('login_error_message')]);
+        return view('admin.auth.login', ['isAuthError' => session('is_auth_error')]);
     }
 }
