@@ -43,8 +43,8 @@ jobs:
             - vendor
       - run:
           name: Start Chrome Driver
-            command: php artisan dusk:chrome-driver
-            background: true
+          command: php artisan dusk:chrome-driver
+          background: true
       - run:
           name: Start Chrome Driver
           command: ./vendor/laravel/dusk/bin/chromedriver-linux
