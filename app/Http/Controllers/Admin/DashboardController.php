@@ -19,7 +19,7 @@ class DashboardController extends Controller
      *
      * @return mixed
      */
-    public function getIndex()
+    public function __invoke()
     {
 
         return view('admin.dashboard.index');

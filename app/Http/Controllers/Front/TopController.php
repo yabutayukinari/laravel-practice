@@ -15,7 +15,7 @@ use App\Http\Controllers\Controller;
  */
 class TopController extends Controller
 {
-    public function getIndex()
+    public function __invoke()
     {
         return view('front.top.index');
     }

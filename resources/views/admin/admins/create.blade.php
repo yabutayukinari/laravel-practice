@@ -30,9 +30,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group bmd-form-group has-danger">
-                                        <label class="bmd-label-floating ">ユーザーID</label>
+                                        <label class="bmd-label-floating ">管理者コード</label>
                                         <input type="text" class="form-control is-invalid">
-                                        <label class="control-label" style="color: red">ユーザーIDを入力してください。</label>
+                                        <label class="control-label" style="color: red">管理者コードを入力してください。</label>
                                     </div>
                                 </div>
                             </div>

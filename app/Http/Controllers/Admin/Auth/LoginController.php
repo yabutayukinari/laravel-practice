@@ -5,23 +5,23 @@
  * @package Admin
  */
 
-namespace App\Http\Controllers\Admin\Admins;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 
 /**
- * 管理者編集
+ * ログイン
  */
-class EditController extends Controller
+class LoginController extends Controller
 {
     /**
-     * 一覧画面取得
+     * ダッシュボード
      *
      * @return mixed
      */
     public function __invoke()
     {
 
-        return view('admin.admins.edit');
+        return view('admin.auth.login');
     }
 }
