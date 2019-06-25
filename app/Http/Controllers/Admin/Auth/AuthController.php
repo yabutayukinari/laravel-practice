@@ -5,23 +5,23 @@
  * @package Admin
  */
 
-namespace App\Http\Controllers\Admin\Admins;
+namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 
 /**
- * 管理者編集
+ * 認証処理
  */
-class EditController extends Controller
+class AuthController extends Controller
 {
     /**
-     * 一覧画面取得
+     * 認証処理
      *
      * @return mixed
      */
     public function __invoke()
     {
 
-        return view('admin.admins.edit');
+        return redirect(route('Admin::dashboard'));
     }
 }

@@ -5,18 +5,15 @@
  * @package Admin
  */
 
-namespace App\Http\Controllers\Admin\Admins;
+namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 
 /**
- * 管理者一覧
+ * 管理者登録
  */
-class ListController extends Controller
+class CreateController extends Controller
 {
-    //テンプレート
-    const VIEW_FILE = 'admin.admins.list';
-
     /**
      * 一覧画面取得
      *
@@ -25,6 +22,6 @@ class ListController extends Controller
     public function __invoke()
     {
 
-        return view(self::VIEW_FILE);
+        return view('admin.admins.create');
     }
 }

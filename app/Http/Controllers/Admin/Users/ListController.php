@@ -5,7 +5,7 @@
  * @package Admin
  */
 
-namespace App\Http\Controllers\Admin\Admins;
+namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 

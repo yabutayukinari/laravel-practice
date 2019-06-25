@@ -19,7 +19,7 @@ class CreateController extends Controller
      *
      * @return mixed
      */
-    public function getIndex()
+    public function __invoke()
     {
 
         return view('admin.admins.create');
