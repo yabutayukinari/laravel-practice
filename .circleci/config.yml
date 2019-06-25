@@ -22,7 +22,6 @@ jobs:
       - checkout
 
       - run: sudo apt update && sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo apt-get install google-chrome-stable
       - run: sudo docker-php-ext-install zip
       - run: cp .env.testing .env
 
