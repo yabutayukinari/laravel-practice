@@ -1,7 +1,15 @@
 @extends('admin.layouts.layouts',['pageContents' => 'admins', 'pageType' => 'create'])
 @section('title', '管理者登録')
+@section('head')
+    <style type="text/css">
+        /*初期表示時にテンプレートが一瞬表示されてしまうのを防ぐ*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+@endsection
 @section('content')
-    <div id="content">
+    <div id="content" v-cloak>
         <div class="row">
             <div class="col-md-5">
                 <div class="card">
@@ -11,28 +19,31 @@
                     </div>
                     <div class="card-body">
                         <form>
+                            {{-- 氏名 --}}
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group bmd-form-group">
-                                        <label class="bmd-label-floating">氏名</label>
-                                        <input type="text" class="form-control">
+                                    <div class="form-group bmd-form-group" v-bind:class="{'has-danger':allErrors.name}">
+                                        <label class="bmd-label-floating">@lang('admin/admins/attributes.name')</label>
+                                        <input type="text" class="form-control" v-model="form.name" v-bind:class="{'is-invalid':allErrors.name}">
+                                        <label v-if="allErrors.name" class="invalid-feedback">@{{ allErrors.name[0] }}</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group bmd-form-group">
+                                    <div class="form-group bmd-form-group" v-bind:class="{'has-danger':allErrors.name_kana}">
                                         <label class="bmd-label-floating">氏名(ふりがな)</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" v-model="form.name_kana" v-bind:class="{'is-invalid':allErrors.name_kana}">
+                                        <label v-if="allErrors.name_kana" class="invalid-feedback">@{{ allErrors.name_kana[0] }}</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group bmd-form-group has-danger">
+                                    <div class="form-group bmd-form-group has-danger"  v-bind:class="{'has-danger':allErrors.admin_code}">
                                         <label class="bmd-label-floating ">管理者コード</label>
-                                        <input type="text" class="form-control is-invalid">
-                                        <label class="control-label" style="color: red">管理者コードを入力してください。</label>
+                                        <input type="text" class="form-control" v-model="form.admin_code"  v-bind:class="{'is-invalid':allErrors.admin_code}">
+                                        <label v-if="allErrors.admin_code" class="invalid-feedback">@{{ allErrors.admin_code[0] }}</label>
                                     </div>
                                 </div>
                             </div>
@@ -42,8 +53,10 @@
 
                                     <div class="form-group bmd-form-group">
                                         <label class="bmd-label-floating">パスワード <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" data-html="true" data-container="body" title="パスワードは以下の条件で入力してください。<br/>半角英数字<br>8~25文字"></i></label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" :type="passwordFieldType" v-model="password" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                        <div class="input-group mb-3" >
+                                            <input type="text" class="form-control" :type="passwordFieldType" v-bind:class="{'is-invalid':allErrors.admin_code}" v-model="form.password" aria-label="Recipient's username" aria-describedby="basic-addon2" >
+                                            <label v-if="allErrors.password" class="invalid-feedback order-last">@{{ allErrors.password[0] }}</label>
+
                                             <div class="input-group-append">
                                             <span class="input-group-text" id="basic-addon2">
                                                 <i v-show="showPassword" class="fas fa-eye" v-on:click="switchVisibility('show')"
@@ -60,19 +73,19 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="role">権限</label>
-                                        <select class="form-control"
-                                                id="role">
+                                        <select class="custom-select" v-bind:class="{'is-invalid':allErrors.role_id}"
+                                                id="role" v-model="form.role_id">
                                             <option></option>
-                                            <option>システム管理者</option>
-                                            <option>編集者</option>
+                                            <option value="1">システム管理者</option>
+                                            <option value="2">編集者</option>
                                         </select>
+                                        <label v-if="allErrors.role_id" class="invalid-feedback">@{{ allErrors.role_id[0] }}</label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="text-right">
-                                <button type="button" class="btn btn-success pull-right" data-toggle="modal"
-                                        data-target="#createConfirmModal">確認
+                                <button type="button" class="btn btn-success pull-right" v-on:click="clickConfirm">確認
                                 </button>
                             </div>
                         </form>
@@ -97,19 +110,20 @@
                             <div class="row">
                                 <div>
                                     <label>氏名</label>
-                                    山田　太郎
+                                    @{{ form.name }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div>
                                     <label>氏名（ふりがな）</label>
-                                    やまだ　たろう
+                                    @{{ form.name_kana }}
                                 </div>
                             </div>
                             <div class="row">
                                 <div>
                                     <label>ユーザーID</label>
-                                    t_yamada
+                                    @{{ form.admin_code }}
+
                                 </div>
 
                             </div>
@@ -122,7 +136,7 @@
                             <div class="row">
                                 <div>
                                     <label>権限</label>
-                                    システム管理者
+                                    @{{ role_name }}
                                 </div>
                             </div>
                         </div>
@@ -140,57 +154,71 @@
 @endsection
 
 @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+
         var vm = new Vue({
             el: '#content',
             data: {
-                password: '',
-                roleId: 0,
-                roleName: "",
-                isDirty: false,
+                form: {
+                    name: '',
+                    name_kana: '',
+                    admin_code: '',
+                    password: '',
+                    role_id: '',
+                },
+                role_name: '',
+                allErrors: [],
                 passwordFieldType: 'password',
                 showPassword: true,
-                hidePassword: false
-
+                hidePassword: false,
+            },
+            watch:{
+              role_id: function (value) {
+                  switch (value) {
+                      case '1':
+                          this.role_name = '管理者';
+                          break;
+                      case '2':
+                          this.role_name = '編集者';
+                          break;
+                      default:
+                          this.role_name = '';
+                  }
+              }  
             },
             methods: {
-                /**
-                 * プルダウン選択イベント
-                 * MDLにはプルダウンデザインがないため独自実装が必要
-                 *
-                 * @param roleId
-                 */
-                selectRole: function (roleId) {
-                    this.roleId = roleId;
-                    this.isDirty = true;
-                    switch (this.roleId) {
-                        case 0 :
-                            this.roleName = '';
-                            this.isDirty = false;
-                            break;
-                        case 1 :
-                            this.roleName = '管理者';
-                            break;
-                        case 2 :
-                            this.roleName = '編集者';
-                            break;
-                        case 3 :
-                            this.roleName = 'アカウント管理者';
-                            break;
-                    }
-                },
                 /**
                  * パスワード表示
                  */
                 switchVisibility: function (status) {
                     this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password';
-
                     this.showPassword = (status !== 'show');
                     this.hidePassword = (status !== 'hide');
                 },
+                /**
+                 * 確認ボタン押下
+                 */
+                clickConfirm: function () {
+                    dataform = new FormData();
+                    dataform.append('name', this.form.name);
+                    dataform.append('name_kana', this.form.name_kana);
+                    dataform.append('admin_code', this.form.admin_code);
+                    dataform.append('password', this.form.password);
+                    dataform.append('role_id', this.form.role_id);
+
+                    axios.post('{{route('admin::admins.create.validate')}}', dataform)
+                        .then(function (response) {
+                            console.log(response);
+                            $('#createConfirmModal').modal('show')
+                        })
+                        .catch(function (error) {
+                            // console.log(error);
+
+                            vm.allErrors = error.response.data.errors;
+                        });
+                }
             }
-        })
+        });
     </script>
 @endsection

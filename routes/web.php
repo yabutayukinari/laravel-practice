@@ -25,9 +25,23 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
 
         // 管理者管理
         Route::group(['as' => 'admins.', 'namespace' => 'Admins', 'prefix' => 'admins'], function () {
+            // 一覧
             Route::get('list', 'ListController')->name('list');
-            Route::get('create', 'CreateController')->name('create');
-            Route::get('edit', 'EditController')->name('edit');
+
+            // 新規登録
+            Route::group(['as' => 'create.', 'namespace' => 'Create', 'prefix' => 'create'], function () {
+                Route::get('start', 'StartController')->name('start');
+                Route::get('input', 'InputController')->name('input');
+                Route::post('validate','ValidateController')->name('validate');
+                Route::get('save', 'SaveController')->name('save');
+            });
+
+            // 編集
+            Route::group(['as' => 'edit.', 'namespace' => 'Edit', 'prefix' => 'edit'], function () {
+                Route::get('input', 'InputController')->name('input');
+            });
+
+            // 削除
         });
 
         // 会員管理
@@ -40,4 +54,3 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
     });
 });
 
-Route::get('/home', 'HomeController@index')->name('home');

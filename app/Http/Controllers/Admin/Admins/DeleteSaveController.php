@@ -10,10 +10,13 @@ namespace App\Http\Controllers\Admin\Admins;
 use App\Http\Controllers\Controller;
 
 /**
- * 管理者登録
+ * 管理者一覧
  */
-class CreateController extends Controller
+class DeleteSaveController extends Controller
 {
+    //テンプレート
+    const VIEW_FILE = 'admin.admins.list';
+
     /**
      * 一覧画面取得
      *
@@ -22,6 +25,6 @@ class CreateController extends Controller
     public function __invoke()
     {
 
-        return view('admin.admins.create');
+        return view(self::VIEW_FILE);
     }
 }

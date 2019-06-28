@@ -31,7 +31,7 @@
                     <a href="{{route('admin::admins.list')}}">管理者一覧</a>
                 </li>
                 <li @if($pageContents === 'admins' && $pageType === 'create') class="active" @endif>
-                    <a href="{{route('admin::admins.create')}}">管理者登録</a>
+                    <a href="{{route('admin::admins.create.start')}}">管理者登録</a>
                 </li>
             </ul>
         </li>

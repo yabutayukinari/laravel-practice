@@ -36,6 +36,11 @@ return [
     */
 
     'guards' => [
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'admins',
+            'hash' => true,
+        ],
         'admins' => [
             'driver' => 'session',
             'provider' => 'admins',

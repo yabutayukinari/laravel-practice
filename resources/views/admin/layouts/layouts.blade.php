@@ -14,14 +14,20 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="/admin_asset/css/common.css">
+    <link rel="stylesheet" href="{{asset('/admin_asset/css/common.css')}}">
 
     <link rel="stylesheet" href="/admin_asset/open-iconic/font/css/open-iconic-bootstrap.css">
 
     <!-- Font Awesome JS -->
     <script src="https://kit.fontawesome.com/7e32e652f7.js"></script>
+    <!-- CSRFトークン -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- laravel mix -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('head')
 </head>
-<body>
+<body id="body">
 <div class="wrapper">
     <!-- Sidebar  -->
 @if(Auth::check())

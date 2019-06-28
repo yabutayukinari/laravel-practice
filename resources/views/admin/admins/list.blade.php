@@ -76,7 +76,7 @@
                                             管理者
                                         </td>
                                         <td class="">
-                                            <a class="btn btn-success" href="{{route("admin::admins.create")}}">編集</a>
+                                            <a class="btn btn-success" href="{{route("admin::admins.create.input")}}">編集</a>
                                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                                     data-target="#deleteModal">削除
                                             </button>

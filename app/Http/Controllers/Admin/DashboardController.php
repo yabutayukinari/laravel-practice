@@ -7,12 +7,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-
 /**
  * ダッシュボード
  */
-class DashboardController extends Controller
+class DashboardController extends AdminBaseController
 {
     /**
      * ダッシュボード

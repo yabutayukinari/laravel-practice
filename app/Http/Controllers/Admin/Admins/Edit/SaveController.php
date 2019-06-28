@@ -5,14 +5,14 @@
  * @package Admin
  */
 
-namespace App\Http\Controllers\Admin\Admins;
+namespace App\Http\Controllers\Admin\Admins\Edit;
 
 use App\Http\Controllers\Controller;
 
 /**
- * 管理者編集
+ * 管理者登録
  */
-class EditController extends Controller
+class SaveController extends Controller
 {
     /**
      * 一覧画面取得
@@ -22,6 +22,6 @@ class EditController extends Controller
     public function __invoke()
     {
 
-        return view('admin.admins.edit');
+        return view('admin.admins.create');
     }
 }
