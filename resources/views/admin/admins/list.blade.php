@@ -2,6 +2,15 @@
 @section('title', '管理者一覧')
 @section('content')
     <div id="content">
+        @if (session('create_complete'))
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">
+                    aaaaa
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="row mb-3">
             <div class="col-md-5">
                 <div class="card">

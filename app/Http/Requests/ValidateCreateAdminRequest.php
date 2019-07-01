@@ -29,17 +29,17 @@ class ValidateCreateAdminRequest extends FormRequest
             'name' => [
                 'bail',
                 'required',
-                'max:4',
+                'max:50',
             ],
             'name_kana' => [
                 'bail',
                 'required',
-                'max:4',
+                'max:50',
             ],
             'admin_code' => [
                 'bail',
                 'required',
-                'max:4',
+                'max:20',
             ],
             'password' => [
                 'bail',
@@ -50,7 +50,7 @@ class ValidateCreateAdminRequest extends FormRequest
             'role_id' => [
                 'bail',
                 'required',
-                'max:4',
+                'max:1',
             ],
         ];
     }

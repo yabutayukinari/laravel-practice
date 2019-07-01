@@ -7,6 +7,7 @@
 
 namespace App\Http\Controllers\Admin\Admins\Create;
 
+use App\Entities\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidateCreateAdminRequest;
 
@@ -23,10 +24,14 @@ class SaveController extends Controller
     /**
      * 一覧画面取得
      *
-     * @return mixed
+     * @param ValidateCreateAdminRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(ValidateCreateAdminRequest $request)
     {
-        return view('admin.admins.create');
+        $form = $request->only(['name','name_kana','admin_code','password','role_id']);
+        Admin::create($form);
+
+        return redirect()->route('admin::admins.list')->with('complete_message', __('create_complete_message',['content'=>'管理者']));
     }
 }
