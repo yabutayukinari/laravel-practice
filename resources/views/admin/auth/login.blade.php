@@ -1,5 +1,5 @@
 @extends('admin.layouts.layouts',['pageContents' => 'admins', 'pageType' => 'create'])
-@section('title', '管理者登録')
+@section('title', 'ログイン')
 @section('content')
     <div id="content">
         <div class="row">

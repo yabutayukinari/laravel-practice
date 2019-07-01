@@ -1,7 +1,8 @@
 @extends('admin.layouts.layouts',['pageContents' => 'admins', 'pageType' => 'create'])
 @section('title', '管理者登録')
 @section('head')
-    <style type="text/css">
+    <style type="text/css" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+           xmlns:v-bind="http://www.w3.org/1999/xhtml">
         /*初期表示時にテンプレートが一瞬表示されてしまうのを防ぐ*/
         [v-cloak] {
             display: none;
@@ -42,7 +43,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group bmd-form-group has-danger"  v-bind:class="{'has-danger':allErrors.admin_code}">
                                         <label class="bmd-label-floating ">管理者コード</label>
-                                        <input type="text" class="form-control" v-model="form.admin_code"  v-bind:class="{'is-invalid':allErrors.admin_code}">
+                                        <input type="text" class="form-control" v-model="form.admin_code"  v-bind:class="{'is-invalid':allErrors.admin_code}" autocomplete="off">
                                         <label v-if="allErrors.admin_code" class="invalid-feedback">@{{ allErrors.admin_code[0] }}</label>
                                     </div>
                                 </div>
@@ -54,7 +55,8 @@
                                     <div class="form-group bmd-form-group">
                                         <label class="bmd-label-floating">パスワード <i class="far fa-question-circle" data-toggle="tooltip" data-placement="top" data-html="true" data-container="body" title="パスワードは以下の条件で入力してください。<br/>半角英数字<br>8~25文字"></i></label>
                                         <div class="input-group mb-3" >
-                                            <input type="text" class="form-control" :type="passwordFieldType" v-bind:class="{'is-invalid':allErrors.admin_code}" v-model="form.password" aria-label="Recipient's username" aria-describedby="basic-addon2" >
+                                            {{-- 2019/07/01 yabuta パスワードのautocompleteを無効にする URL:https://developer.mozilla.org/ja/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#The_autocomplete_attribute_and_login_fields --}}
+                                            <input type="text" class="form-control" :type="passwordFieldType" v-bind:class="{'is-invalid':allErrors.admin_code}" v-model="form.password" aria-label="Recipient's username" aria-describedby="basic-addon2" autocomplete="new-password">
                                             <label v-if="allErrors.password" class="invalid-feedback order-last">@{{ allErrors.password[0] }}</label>
 
                                             <div class="input-group-append">
