@@ -1,10 +1,18 @@
 <?php
+/**
+ * @package App\Providers
+ */
 
 namespace App\Providers;
 
+use App\Entities\Admin;
+use App\Policies\AdminPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+/**
+ * Class AuthServiceProvider
+ */
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -14,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
+        Admin::class => AdminPolicy::class,
     ];
 
     /**
@@ -25,6 +34,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('create-admin', function ($user) {
+            // システウ管理者のみ登録可能
+            return $user->role_id === 1;
+        });
     }
 }

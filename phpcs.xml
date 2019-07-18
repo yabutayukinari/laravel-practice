@@ -30,8 +30,6 @@
         <exclude name="Generic.Files.LineEndings.InvalidEOLChar"/>
     </rule>
 
-    <!-- 変数名はキャメルケースにすること -->
-    <rule ref="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
 
     <!-- 文字列の結合演算子の前後にスペースを入れないこと -->
     <rule ref="Squiz.Strings.ConcatenationSpacing">

@@ -72,7 +72,7 @@
                                         <div class="input-group mb-3">
                                             {{-- 2019/07/01 yabuta パスワードのautocompleteを無効にする URL:https://developer.mozilla.org/ja/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion#The_autocomplete_attribute_and_login_fields --}}
                                             <input type="text" class="form-control" :type="passwordFieldType"
-                                                   v-bind:class="{'is-invalid':allErrors.admin_code}"
+                                                   v-bind:class="{'is-invalid':allErrors.password}"
                                                    v-model="form.password" aria-label="Recipient's username"
                                                    aria-describedby="basic-addon2" autocomplete="new-password">
                                             <label v-if="allErrors.password" class="invalid-feedback order-last">

@@ -21,16 +21,17 @@
                         <p class="card-text">管理者の検索を行えます</p>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form method="get">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="role">権限</label>
-                                        <select class="form-control"
+                                        <select class="form-control" name="role_id"
                                                 id="role">
                                             <option></option>
-                                            <option>システム管理者</option>
-                                            <option>編集者</option>
+                                            <option value="1" >システム管理者</option>
+                                            <option value="2">管理者</option>
+                                            <option value="3">編集者</option>
                                         </select>
                                     </div>
                                 </div>
@@ -47,7 +48,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                    <button type="button" class="btn btn-primary">検索</button>
+                                    <button type="submit" class="btn btn-primary">検索</button>
                                 </div>
                             </div>
                         </form>
@@ -72,26 +73,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @for($i=1; $i<=6; $i++)
+                                @foreach($adminList as $admin)
                                     <tr>
-                                        <td class="text-center">
-                                            {{$i}}
-                                        </td>
-                                        <td>
-                                            山田{{$i}}郎
-                                        </td>
-                                        <td>やまだ {{$i}}ろう</td>
-                                        <td>
-                                            管理者
-                                        </td>
-                                        <td class="">
-                                            <a class="btn btn-success" href="{{route("admin::admins.create.input")}}">編集</a>
-                                            <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                    data-target="#deleteModal">削除
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endfor
+                                    <td class="text-center">
+                                        {{$admin->id}}
+                                    </td>
+                                    <td>
+                                        {{$admin->name}}
+                                    </td>
+                                    <td>{{$admin->name_kana}}</td>
+                                    <td>
+                                        {{$admin->RoleName}}
+                                    </td>
+                                    <td class="">
+                                        <a class="btn btn-success" href="{{route("admin::admins.create.input",['id' => $admin->id])}}">編集</a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                                                data-target="#deleteModal">削除
+                                        </button>
+                                    </td>
+                                </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -115,7 +116,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="button" class="btn btn-primary">削除</button>
+                        <button type="button" class="btn btn-primary" v-on:click="clickDelete">削除</button>
                     </div>
                 </div>
             </div>
@@ -124,5 +125,13 @@
 @endsection
 
 @section('js')
+    <script>
+        const vm = new Vue({
+            methods: {
+                clickDelete: function () {
 
+                }
+            }
+        });
+    </script>
 @endsection

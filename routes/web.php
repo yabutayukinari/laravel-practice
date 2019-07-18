@@ -13,28 +13,32 @@ Route::group(['as' => 'front::', 'namespace' => 'Front', 'prefix' => 'front'], f
 Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
     Route::group(['as' => 'auth.', 'namespace' => 'Auth', 'prefix' => 'auth'], function () {
-        Route::get('login','LoginController')->name('login');
+        Route::get('login', 'LoginController')->name('login');
         Route::post('', 'AuthController')->name('auth');
     });
     Route::group(['middleware' => 'auth'], function () {
         // トップページ
         Route::get('', 'DashboardController')->name('dashboard');
         Route::group(['as' => 'auth.', 'namespace' => 'Auth', 'prefix' => 'auth'], function () {
-        Route::get('logout','LogoutController')->name('logout');
-            });
+            Route::get('logout', 'LogoutController')->name('logout');
+        });
 
         // 管理者管理
         Route::group(['as' => 'admins.', 'namespace' => 'Admins', 'prefix' => 'admins'], function () {
             // 一覧
-            Route::get('list', 'ListController')->name('list');
+            Route::get('list', 'ListController')->name('list')->middleware('can:list,'.\App\Entities\Admin::class);
 
             // 新規登録
-            Route::group(['as' => 'create.', 'namespace' => 'Create', 'prefix' => 'create'], function () {
-                Route::get('start', 'StartController')->name('start');
-                Route::get('input', 'InputController')->name('input');
-                Route::post('validate','ValidateController')->name('validate');
-                Route::get('save', 'SaveController')->name('save');
-            });
+            Route::group(
+                ['as' => 'create.', 'namespace' => 'Create', 'prefix' => 'create',
+                    'middleware' => 'can:create,'.\App\Entities\Admin::class],
+                function () {
+                    Route::get('start', 'StartController')->name('start');
+                    Route::get('input', 'InputController')->name('input');
+                    Route::post('validate', 'ValidateController')->name('validate');
+                    Route::get('save', 'SaveController')->name('save');
+                }
+            );
 
             // 編集
             Route::group(['as' => 'edit.', 'namespace' => 'Edit', 'prefix' => 'edit'], function () {
@@ -42,6 +46,7 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
             });
 
             // 削除
+            Route::get('delete/{admin}', 'DeleteController')->name('delete');
         });
 
         // 会員管理

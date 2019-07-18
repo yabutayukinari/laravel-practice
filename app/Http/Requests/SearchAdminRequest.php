@@ -1,10 +1,25 @@
 <?php
+/**
+ * @copyright Copyright yabuta
+ * @since     2019/7/18
+ * @package
+ */
+
+/**
+ *
+ * @package App\Http\Requests
+ */
 
 namespace App\Http\Requests;
 
+use App\Entities\Admin;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ValidateCreateAdminRequest extends FormRequest
+/**
+ * Class SearchAdminRequest
+ */
+class SearchAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,32 +40,15 @@ class ValidateCreateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            //
-            'name' => [
+            'name_or_name_kana' => [
                 'bail',
-                'required',
                 'max:50',
-            ],
-            'name_kana' => [
-                'bail',
-                'required',
-                'max:50',
-            ],
-            'admin_code' => [
-                'bail',
-                'required',
-                'max:20',
-            ],
-            'password' => [
-                'bail',
-                'required',
-                'min:8',
-                'max:25',
             ],
             'role_id' => [
                 'bail',
-                'required',
+                'integer',
                 'max:1',
+                Rule::in(array_keys(Admin::ROLES)),
             ],
         ];
     }

@@ -1,13 +1,32 @@
 <?php
+/**
+ * @package App\Entities
+ */
 
 namespace App\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Admin
+ *
+ */
 class Admin extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
+    const ROLE_ID_SYSTEM_MASTER = 1;
+    const ROLE_ID_ADMIN_MASTER = 2;
+    const ROLE_ID_EDITOR = 3;
+
+    const ROLES = [
+      self::ROLE_ID_SYSTEM_MASTER => 'システム管理者',
+      self::ROLE_ID_ADMIN_MASTER => '管理者',
+      self::ROLE_ID_EDITOR => '編集者'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +55,14 @@ class Admin extends Authenticatable
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];
+
+    /**
+     * @return mixed
+     */
+    public function getRoleNameAttribute()
+    {
+        return self::ROLES[$this->role_id];
+    }
+
+
 }

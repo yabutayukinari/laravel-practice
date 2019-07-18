@@ -8,5 +8,8 @@
 return [
     'create_complete_message' => ':contentの登録が完了しました。',
     'edit_complete_message' => ':contentの更新が完了しました。',
+    'error' => [
+        'record_not_found' => '指定のデータが見つかりませんでした'
+    ]
 
 ];

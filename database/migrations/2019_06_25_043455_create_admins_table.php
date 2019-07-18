@@ -20,6 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('admin_code');
             $table->integer('role_id');
             $table->string('password');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

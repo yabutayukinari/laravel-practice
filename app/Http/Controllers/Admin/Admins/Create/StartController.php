@@ -9,6 +9,9 @@ namespace App\Http\Controllers\Admin\Admins\Create;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 
 /**
  * 管理者登録 初期処理
@@ -27,6 +30,7 @@ class StartController extends Controller
      */
     public function __invoke()
     {
+
         // セッション削除
         Session::forget(config('product.admins.create_admin_session'));
         return redirect()->route('admin::admins.create.input');
