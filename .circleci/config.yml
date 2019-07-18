@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.3-stretch-node-browsers
+      - image: 7.1-zts-node-browsers-legacy
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -17,7 +17,7 @@ jobs:
       # - image: circleci/mysql:5.7-ram
       #
       # - image: redis:2.8.19
-      - image: circleci/postgres:10.1-alpine
+      - image: circleci/postgres:latest
           environment:
             POSTGRES_USER: username
             POSTGRES_DB: api_test
