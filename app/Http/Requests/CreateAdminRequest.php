@@ -21,7 +21,7 @@ class CreateAdminRequest extends FormRequest
     public function authorize()
     {
 
-        return false;
+        return true;
     }
 
     /**
@@ -52,6 +52,9 @@ class CreateAdminRequest extends FormRequest
                 'required',
                 'min:8',
                 'max:25',
+                Rule::unique('users')->where(function ($query) {
+                    return $query->where('account_id', 1);
+                        }),
             ],
             'role_id' => [
                 'bail',

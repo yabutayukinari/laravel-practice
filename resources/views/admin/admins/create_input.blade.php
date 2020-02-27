@@ -8,6 +8,10 @@
             display: none;
         }
     </style>
+    <script>window.axios.defaults.headers.common = {
+            'X-Requested-With': 'XMLHttpRequest',
+        };</script>
+
 @endsection
 @section('content')
     <div id="content" v-cloak>
@@ -174,7 +178,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="button" class="btn btn-success">作成</button>
+                        <button type="button" class="btn btn-success" v-on:click="clickSave">作成</button>
                     </div>
                 </div>
             </div>
@@ -236,19 +240,40 @@
                     dataform.append('password', this.form.password);
                     dataform.append('role_id', this.form.role_id);
 
+                    let axiosPost = axios.create({
+                        headers: {
+                            'Accept': 'application/json',
+                            'Authorization': 'Bearer '+ '{{\Illuminate\Support\Facades\Auth::user()->api_token ?? null}}',
+                        },
+                    });
+                    axiosPost.post('{{route('admin::admins.create.validate')}}', dataform)
+                        .then(function (response) {
+                            console.log(response);
+                            $('#createConfirmModal').modal('show')
+                        })
+                        .catch(function (error) {
+
+                            vm.allErrors = error.response.data.errors;
+                        });
+                },
+                clickSave: function () {
+
+                    dataform = new FormData();
+                    dataform.append('name', this.form.name);
+                    dataform.append('name_kana', this.form.name_kana);
+                    dataform.append('admin_code', this.form.admin_code);
+                    dataform.append('password', this.form.password);
+                    dataform.append('role_id', this.form.role_id);
+
                     axios.post('{{route('admin::admins.create.validate')}}', dataform)
                         .then(function (response) {
                             console.log(response);
                             $('#createConfirmModal').modal('show')
                         })
                         .catch(function (error) {
-                            // console.log(error);
 
                             vm.allErrors = error.response.data.errors;
                         });
-                },
-                clickSave: function () {
-                  submit
                 }
             }
         });

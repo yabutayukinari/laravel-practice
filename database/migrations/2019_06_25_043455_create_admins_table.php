@@ -20,6 +20,10 @@ class CreateAdminsTable extends Migration
             $table->string('admin_code');
             $table->integer('role_id');
             $table->string('password');
+            $table->string('api_token', 80)
+                ->unique()
+                ->nullable()
+                ->default(null);
             $table->softDeletes();
             $table->timestamps();
         });

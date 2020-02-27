@@ -34,6 +34,13 @@ class AuthController extends Controller
             return redirect()->route('admin::auth.login');
         }
 
+        $token = \Str::random(60);
+
+        Auth::user()->forceFill([
+            'api_token' => hash('sha256', $token),
+        ])->save();
+
+
         Log::info('認証成功', ['session_id'=> Session::getId()]);
         return redirect()->intended(route('admin::dashboard'));
     }

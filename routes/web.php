@@ -5,7 +5,7 @@
  * @package Routes
  */
 
-Route::group(['as' => 'front::', 'namespace' => 'Front', 'prefix' => 'front'], function () {
+Route::group(['as' => 'front::', 'namespace' => 'Front', 'prefix' => ''], function () {
     // トップページ
     Route::get('', 'TopController')->name('top');
 });
@@ -35,8 +35,6 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
                 function () {
                     Route::get('start', 'StartController')->name('start');
                     Route::get('input', 'InputController')->name('input');
-                    Route::post('validate', 'ValidateController')->name('validate');
-                    Route::get('save', 'SaveController')->name('save');
                 }
             );
 
@@ -45,8 +43,6 @@ Route::group(['as' => 'admin::', 'namespace' => 'Admin', 'prefix' => 'admin'], f
                 Route::get('input', 'InputController')->name('input');
             });
 
-            // 削除
-            Route::get('delete/{admin}', 'DeleteController')->name('delete');
         });
 
         // 会員管理

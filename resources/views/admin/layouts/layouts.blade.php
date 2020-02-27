@@ -25,6 +25,10 @@
 
     <!-- laravel mix -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        window.Laravel = {!! json_encode(['apiToken' => \Auth::user()->api_token ?? null]) !!};
+        window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + Laravel.apiToken;
+    </script>
     @yield('head')
 </head>
 <body id="body">

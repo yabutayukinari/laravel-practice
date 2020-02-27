@@ -87,8 +87,7 @@
                                     </td>
                                     <td class="">
                                         <a class="btn btn-success" href="{{route("admin::admins.create.input",['id' => $admin->id])}}">編集</a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                data-target="#deleteModal">削除
+                                        <button type="button" class="btn btn-danger" v-on:click="clickDeleteConfirm({{$admin->id}})">削除
                                         </button>
                                     </td>
                                 </tr>
@@ -125,11 +124,30 @@
 @endsection
 
 @section('js')
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         const vm = new Vue({
+            el: '#content',
+            data: {
+                deleteId: null
+            },
             methods: {
+                // 削除確認モーダル表示
+                clickDeleteConfirm: function(id){
+                    $('#deleteModal').modal('show');
+                    this.deleteId = id;
+                },
+                /**
+                 * 削除処理実行
+                 */
                 clickDelete: function () {
-
+                    axios.post('{{route('admin::admins.delete')}}/'+this.deleteId)
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                 }
             }
         });

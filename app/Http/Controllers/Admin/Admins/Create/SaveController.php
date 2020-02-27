@@ -9,6 +9,7 @@ namespace App\Http\Controllers\Admin\Admins\Create;
 
 use App\Entities\Admin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\ApiCreateAdminRequest;
 use App\Http\Requests\CreateAdminRequest;
 
 /**
@@ -29,10 +30,11 @@ class SaveController extends Controller
      */
     public function __invoke(CreateAdminRequest $request)
     {
+        Log::info('管理者登録 開始');
         $form = $request->only(['name','name_kana','admin_code','password','role_id']);
-        Log::info('管理者登録 開始', ['入力値' => $form]);
+        $form['password'] = encrypt($form['password']);
         Admin::create($form);
-        Log::info('管理者登録 完了');
+        Log::info('管理者登録 完了', ['入力値' => $form]);
 
         return redirect()->route('admin::admins.list')->with('complete_message', __('create_complete_message',['content'=>'管理者']));
     }
